@@ -1,19 +1,32 @@
 #include <stdio.h>
-#include <stdlib.h>
-int cmpfunc(const void* a, const void* b)
+void main()
 {
-	return (*(int*)a - *(int*)b);
-}
-int kthSmallest(int arr[], int N, int K)
-{
-	qsort(arr, N, sizeof(int), cmpfunc);
-	return arr[K - 1];
-}
-int main()
-{
-	int arr[] = { 12, 3, 5, 7, 19 };
-	int N = sizeof(arr) / sizeof(arr[0]), K = 2;
-	printf("K'th smallest element is %d",
-		kthSmallest(arr, N, K));
-	return 0;
+    int a[30],i,n,j,k,t;
+    
+    printf("Enter the size of the array :\n");
+    scanf("%d",&n);
+    
+    printf("Enter the elements in the array :\n");
+    for(i = 0 ; i < n ; i ++)
+    {
+        scanf("%d",&a[i]);
+    }
+    
+    printf("Enter the value of k :\n");
+    scanf("%d",&k);
+    
+    for(i = 0 ; i < n - 1 ; i ++)
+    {
+        for(j = 0 ; j < n - i - 1 ; j ++)
+        {
+            if(a[j] < a[j + 1])
+            {
+                t = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = t;
+            }
+        }
+    }
+    
+    printf("The kth maximum element in the entered array is :%d",a[k - 1]);
 }
